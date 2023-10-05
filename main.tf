@@ -1,3 +1,27 @@
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "< 5.0.0"
+    }
+  }
+  backend "s3" {
+    bucket         = "venkat1-new" 
+    key            = "global/s3/terraform.tfstate"    
+    region         = "ap-south-1"           
+    encrypt        = true                   
+    dynamodb_table = "terraform-backend"    
+  }
+}
+
+
+provider "aws" {
+  access_key = "AKIAXMZNJW6PVJQBTD5Z"
+  secret_key = "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"
+  region     = "ap-south-1"
+}
+
 resource "aws_vpc" "venky_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -84,6 +108,6 @@ resource "aws_instance" "venky_ec2" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "venky_ec2"
+    Name = "venky_ec21"
   }
 }
