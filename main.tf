@@ -3,117 +3,60 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "< 5.0.0"
-    }
+      version = "~> 5.3.0" 
+      }
   }
-  backend "s3" {
+
+
+backend "s3" {
     bucket         = "venkat1-new" 
     key            = "global/s3/terraform.tfstate"    
     region         = "ap-south-1"           
     encrypt        = true                   
     dynamodb_table = "terraform-backend"    
-  }
 }
-
+}
 
 provider "aws" {
-  access_key = "AKIAXMZNJW6PVJQBTD5Z"
-  secret_key = "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"
-  region     = "ap-south-1"
+  access_key = data.aws_secretsmanager_secret.my_secret.secret_string["access_key"]
+  secret_key = data.aws_secretsmanager_secret.my_secret.secret_string["secret_key"]
 }
 
-resource "aws_vpc" "venky_vpc" {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-
-  tags = {
-    Name = "venky-vpc"
-  }
-}
-
-resource "aws_subnet" "venky_subnet_1" {
-  vpc_id           = aws_vpc.venky_vpc.id
-  cidr_block       = "10.0.8.0/24"
-  availability_zone = "ap-south-1a"
-
-  tags = {
-    Name = "venky_subnet_1"
-  }
-}
-
-resource "aws_security_group" "venky_sg" {
-  name_prefix = "venky-sg"
-
-  vpc_id = aws_vpc.venky_vpc.id
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "venky_sg"
-  }
-}
-
-resource "aws_internet_gateway" "venky_IGW" {
-  vpc_id = aws_vpc.venky_vpc.id
-
-  tags = {
-    Name = "venky_IGW"
-  }
-}
-
-resource "aws_route_table" "venky_route_table" {
-  vpc_id = aws_vpc.venky_vpc.id
-
-  tags = {
-    Name = "venky_route_table"
-  }
-}
-
-resource "aws_route" "venky_internet_route" {
-  route_table_id         = aws_route_table.venky_route_table.id
-  destination_cidr_block = "0.0.0.0/0" # This is the default route for internet traffic
-  gateway_id             = aws_internet_gateway.venky_IGW.id
-}
-
-resource "aws_route_table_association" "venky_subnet_association" {
-  subnet_id      = aws_subnet.venky_subnet_1.id
-  route_table_id = aws_route_table.venky_route_table.id
-}
-
-resource "aws_instance" "venky_ec2" {
-  ami           = "ami-0f5ee92e2d63afc18"
+resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"
   instance_type = "t2.micro"
-  subnet_id     = aws_subnet.venky_subnet_1.id
-  vpc_security_group_ids = [aws_security_group.venky_sg.id]
-  associate_public_ip_address = true
+  count =6
+  ami = element(["ami-t2.micro", "ami-t2.xlarge", "ami-m2.large", "ami-m2.2xlarge", "ami-m5.large", "ami-t2.micro"], count.index)
+  instance_type = element(["t2.micro", "t2.xlarge", "m2.large", "m2.2xlarge", "m5.large", "t2.micro"], count.index)
 
-  root_block_device {
-    volume_type           = "gp3"
-    volume_size           = 100
-    delete_on_termination = true
+
+  lifecycle {
+    create_before_destroy = true
+    prevent_destroy       = false
+    ignore_changes        = ["tags"]
+    ignore_unchanged      = false
+    wait_for_create_before_destroy = true
   }
 
-  tags = {
-    Name = "venky_ec21"
+  provisioner "remote-exec" {
+    inline = [
+      "touch hello.txt",
+      "echo 'helloworld remote provisioner' >> hello.txt"
+    ]
   }
+}
+
+output "instance_ami" {
+  value = data.aws_instance.venky_instance.ami
+}
+output "instance_id" {
+  value = aws_instance.venky_instance.id
+}
+
+
+
+module "ec2-instance" {
+    source=/opt/terraform/modules/dev
+    region = "us_east-1"
+
 }
