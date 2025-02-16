@@ -11,7 +11,8 @@ terraform {
     key            = "custom-directory/terraform.tfstate"    
     region         = "ap-south-1"           
     encrypt        = true                   
-    dynamodb_table = "terraform-backend"    
+    dynamodb_table = "terraform-backend"  
+#DynamoDB Table Setup: When you create the DynamoDB table (terraform-backend), you must define it with a primary key called LockID. Terraform will use this key automatically to store the lock entry.
   }
 }
 
