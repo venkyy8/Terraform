@@ -1,0 +1,8 @@
+access_key = "AKIAXMZNJW6PVJQBTD5Z"
+secret_key   = "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"
+region = "ap-south-1"
+vpc_name = "venky_vpc"
+subnet1_name = "venky_subnet_1"
+subnet2_name = "venky_subnet_2"
+security_group_name = "venky_sg"
+instance_name = "venky_ec2"
