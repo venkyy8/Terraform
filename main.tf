@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket         = "venkat1-new" 
-    key            = "custom-directory/terraform.tfstate"    
+    key            = "custom-directory/terraform.tfstate"    # path of the state file
     region         = "ap-south-1"           
     encrypt        = true                   
     dynamodb_table = "terraform-backend"  
