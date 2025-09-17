@@ -26,7 +26,7 @@ This Terraform configuration deploys a **static website** on **AWS S3** and uplo
 > Terraform will upload all files inside the `Portfolio` folder recursively. we can see the directory structure after deploying in s3.
 
 
-![AWS S3 Screenshot](images/s3 Directory Structure.png)
+![AWS S3 Screenshot](images/s3-Directory-Structure.png)
 
 ---
 
@@ -59,5 +59,6 @@ Website URL: http://<bucket-name>.s3-website.<region>.amazonaws.com
 
 we can see the final outcome in outside the world.
 
-![AWS S3 Screenshot](images/portfolio website.png)
+![AWS S3 Screenshot](images/portfolio-website.png)
+
 
