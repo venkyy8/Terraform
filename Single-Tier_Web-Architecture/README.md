@@ -53,3 +53,10 @@ http://<PUBLIC_IP>/
 
 🧹 Cleanup
 terraform destroy -auto-approve
+```
+
+Final Output in chrome:
+
+<img width="527" height="412" alt="image" src="https://github.com/user-attachments/assets/3db18d6e-64dd-4883-b876-f8e316babcfd" />
+
+Thank You.
