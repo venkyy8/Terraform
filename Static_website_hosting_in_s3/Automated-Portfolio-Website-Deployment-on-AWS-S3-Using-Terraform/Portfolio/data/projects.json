@@ -1,0 +1,12 @@
+[
+  {
+    "name": "CI/CD Pipeline",
+    "description": "Automated pipelines",
+    "tech": "Jenkins,Docker"
+  },
+  {
+    "name": "Monitoring",
+    "description": "Prometheus & Grafana",
+    "tech": "Prometheus"
+  }
+]

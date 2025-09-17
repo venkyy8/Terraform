@@ -1,0 +1,41 @@
+/* Dark modern portfolio inspired by provided design */
+:root{--bg1:#0b0210;--bg2:#15061a;--accent:#ff2d95;--accent2:#7c5cff;--muted:#a6b0bb;--card:#0f1720;--fg:#eef6ff}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--fg);background:linear-gradient(180deg,var(--bg1),var(--bg2))}
+a{color:inherit} .site-header{position:fixed;top:0;left:0;right:0;z-index:40;background:transparent;padding:18px 28px}
+.nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.signature{font-family:'Segoe Script', cursive; color:var(--fg); opacity:0.95; font-size:1.05rem}
+.nav-links{display:flex;gap:20px;align-items:center;list-style:none;margin:0;padding:0}
+.nav-links a{color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:6px}
+.nav-links a.active{color:var(--fg);border-bottom:3px solid var(--accent);padding-bottom:4px}
+.hero{display:flex;align-items:center;min-height:88vh;padding-top:70px}
+.container{max-width:1200px;margin:0 auto;display:flex;gap:40px;align-items:center;padding:20px}
+.left{flex:1;min-width:300px}
+.right{flex:1;display:flex;justify-content:flex-end;align-items:center}
+.greet{color:var(--muted);margin:0;font-size:1.05rem}
+.hero-name{font-size:3.2rem;margin:6px 0;color:linear-gradient(90deg,var(--accent),var(--accent2));letter-spacing:0.4px}
+.role-pill{display:inline-block;margin:10px 0;padding:8px 12px;border-radius:20px;background:rgba(255,255,255,0.04);color:var(--muted);font-weight:600}
+.hero-desc{color:var(--muted);max-width:680px;line-height:1.6}
+.socials{margin-top:16px;display:flex;gap:12px}
+.socials a{color:var(--muted);text-decoration:none;border-radius:6px;background:rgba(255,255,255,0.02);padding:6px 10px}
+.cta{margin-top:20px;display:flex;gap:12px}
+.btn{padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:white}
+.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--fg)}
+.hero-image{width:420px;height:540px;object-fit:cover;border-radius:12px;box-shadow:0 30px 80px rgba(2,6,23,0.7);border:6px solid rgba(255,255,255,0.02)}
+.content{max-width:900px;margin:40px auto;padding:20px}
+.content-inner{background:rgba(255,255,255,0.02);padding:24px;border-radius:12px}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:18px}
+.project-card{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+.site-footer{max-width:1200px;margin:30px auto;color:var(--muted);padding:10px 20px;text-align:center}
+.role-pill-border {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  border: 1px solid var(--muted);
+}
+
+@media (max-width:900px){.container{flex-direction:column-reverse;align-items:center}.hero-image{width:260px;height:340px}}
