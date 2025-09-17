@@ -14,7 +14,6 @@ It creates the following resources:
 
 ## 📷 Architecture
 
-![Architecture Diagram](./0f77e143-bf71-43ae-b721-f2cd2f2a712a.png)
 
 <img width="721" height="421" alt="Single-Tier Web Architecture on AWS using Terraform drawio" src="https://github.com/user-attachments/assets/3cf93064-b6b1-43fc-866d-dc9e378f2966" />
 
@@ -33,10 +32,13 @@ It creates the following resources:
 ### 1. Initialize Terraform
 ```bash
 terraform init
+
 ### 2. Validate the configuration
 terraform validate
+
 ### 3. Plan the infrastructure
 terraform plan
+
 ### 4. Apply the configuration
 terraform apply -auto-approve
 
@@ -44,22 +46,10 @@ terraform apply -auto-approve
 Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 
 Outputs:
-
 web_url = "http://<PUBLIC_IP>/"
 
 🌐 Access the Web Server
 http://<PUBLIC_IP>/
 
 🧹 Cleanup
-
 terraform destroy -auto-approve
-
-
-
-
-
-
-
-
-
-
