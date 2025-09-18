@@ -14,7 +14,7 @@ if Authentication mode shows EKS API only try to chnage it to EKS API and config
 
 ![AWS S3 Screenshot](images/Manage-access-1.png)
 ![AWS S3 Screenshot](images/Manage-access-2.png)
-![AWS S3 Screenshot](images/Manage-access-2.png)
+![AWS S3 Screenshot](images/Manage-access-3.png)
 
 ## Step-3:
 
@@ -45,7 +45,7 @@ kubectl get nodes
 ```
 
 
-## Thank you For Having Great Learning
+## Thank you for the great learning experience.
 
 
 
