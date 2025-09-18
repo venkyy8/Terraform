@@ -12,9 +12,9 @@ After creation of EKS Cluster try to access the cluster resources from resources
 check your Access Configuration under access Tab inside the cluster.
 if Authentication mode shows EKS API only try to chnage it to EKS API and config
 
-![AWS S3 Screenshot](images/Mange-access-1.png)
-![AWS S3 Screenshot](images/Mange-access-2.png)
-![AWS S3 Screenshot](images/Mange-access-2.png)
+![AWS S3 Screenshot](images/Manage-access-1.png)
+![AWS S3 Screenshot](images/Manage-access-2.png)
+![AWS S3 Screenshot](images/Manage-access-2.png)
 
 ## Step-3:
 
