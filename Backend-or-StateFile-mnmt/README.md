@@ -41,7 +41,7 @@ This project demonstrates how to:
 
 ## 🔧 Step-by-Step Setup
 
-### 1. Create S3 Bucket for State
+### 1. Create S3 Bucket for State file storing by enabling versioning
 ### 2. Create DynamoDB for state Locking
 ### 3. Create the infra Resources 
 
@@ -60,7 +60,7 @@ This project demonstrates how to:
 
 > we can check the state locking how it works.
 
-> if multiple user try to work on same time it wont allow.
+> Terraform prevents multiple users from working on the same state file concurrently.
 
 
 ![AWS S3 Screenshot](images/statelocking-2.png)
