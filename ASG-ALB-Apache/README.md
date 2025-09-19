@@ -25,20 +25,6 @@ we can see how traffic is routing to different servers
 
 ---
 
-## 📁 Project Structure
-
-* terraform-aws-web-stack/
-  * main.tf # Main Terraform configuration
-  * variables.tf # Input variables
-  * outputs.tf # Outputs such as ALB DNS
-  * userdata.sh # Apache installation script
-  * terraform.tfvars # Variable values
-  * README.md # Project documentation
-
-
-
-
----
 
 ## 📦 What This Stack Does
 
