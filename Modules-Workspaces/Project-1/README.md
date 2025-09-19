@@ -19,10 +19,10 @@ This project uses output blocks to expose key information (e.g., instance IPs, r
 
 state file will update based on the workspace where ever we are working. if we did not choose any workspace it will update under default state file.
 
-###### we can see the ec2 instances running even after chnaging the instance type existing instances are still in running state because of workspace approach.
+###### we can see All the ec2 instances are running even after chnaging the instance type, existing instances are still in running state because of this workspace approach.
 
 
 
 ![a](images/ec2-instances-running.png)
 
-
+**Thanks for learning. Your brain probably hates you, but your cloud bill will thank you.**
