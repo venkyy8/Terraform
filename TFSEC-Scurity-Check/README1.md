@@ -26,7 +26,7 @@ This repository contains an AWS infrastructure configuration defined using Terra
 
 #### make sure to install the terraform and tfsec
 
-![A](images/versions)
+![A](images/versions.png)
 
 ## 1. **Terraform Configuration**
 
@@ -53,27 +53,27 @@ tfsec .
 
 #### Example Output:
 
-![A](images/1)
+![A](images/1.png)
 
-![A](images/2)
+![A](images/2.png)
 
-![A](images/3)
+![A](images/3.png)
 
-![A](images/4)
+![A](images/4.png)
 
-![A](images/5)
+![A](images/5.png)
 
-![A](images/6)
+![A](images/6.png)
 
-![A](images/7)
+![A](images/7.png)
 
-![A](images/8)
+![A](images/8.png)
 
-![A](images/9)
+![A](images/9.png)
 
-![A](images/10)
+![A](images/10.png)
 
-![A](images/final-result)
+![A](images/final-result.png)
 
 
 
