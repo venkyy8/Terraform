@@ -1,7 +1,10 @@
 # Note:
 
-# This is just a demonstration of how to fetch and use secrets from AWS Secrets Manager using Terraform — not intended for real-world use CASE.
 
+# This Specific Task is for demonstration of how to fetch and use secrets from AWS Secrets Manager using Terraform — not intended for real-world use CASE.
+
+
+---
 ## 🚀 EC2 Instance Deployment with AWS Secrets Manager using Terraform
 
 This Terraform configuration deploys an EC2 instance in AWS and dynamically fetches a secret (`Docker_Password`) from AWS Secrets Manager. The fetched secret is used to tag the EC2 instance — demonstrating how to securely retrieve and use secrets in infrastructure automation.
