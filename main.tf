@@ -1,3 +1,25 @@
+terraform {
+  required_version = ">= 1.3.0"
+
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.90"
+    }
+  }
+
+  backend "azurerm" {
+    resource_group_name  = "tf-backend-rg"              # create manually
+    storage_account_name = "tfsamplebackend12345"       # must be globally unique
+    container_name       = "tfstate"
+    key                  = "example-vm.tfstate"
+  }
+}
+
+
+
+
+
 provider "azurerm" {
   features {}
   subscription_id = "8af2ef0e-975a-40ab-b93d-e004ad679781"
@@ -7,6 +29,10 @@ provider "azurerm" {
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "East US"
+  tags = {
+    environment = "dev"
+    owner       = "devops-team"
+  }
 }
 
 # Virtual Network
@@ -89,7 +115,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   disable_password_authentication = true
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("/mnt/c/DRIVE-D/DevOps/work-practice/Terraform/anything.pub")  # Local path to your public key #eaither public key or username passwords we have to use atleast 1
+    public_key = file("/mnt/c/DRIVE-D/DevOps/work-practice/Terraform/anything.pub")  # Local path to your public key
   }
 
   os_disk {
@@ -105,3 +131,17 @@ resource "azurerm_linux_virtual_machine" "example" {
   }
 }
 
+###########################
+# Outputs
+###########################
+output "resource_group_name" {
+  value = azurerm_resource_group.example.name
+}
+
+output "vm_public_ip" {
+  value = azurerm_public_ip.example.ip_address
+}
+
+output "vm_name" {
+  value = azurerm_linux_virtual_machine.example.name
+}
