@@ -9,59 +9,59 @@ terraform {
 }
 
 provider "aws" {
-  region     = "ap-south-1"
+  region     = "us-east-1"
 }
 
-resource "aws_vpc" "venky_vpc" {
+resource "aws_vpc" "dev_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
-    Name = "venky-vpc"
+    Name = "dev-app-vpc"
   }
 }
 
-resource "aws_subnet" "venky_subnet_1" {
-  vpc_id            = aws_vpc.venky_vpc.id
+resource "aws_subnet" "dev_subnet_1" {
+  vpc_id            = aws_vpc.dev_vpc.id
   cidr_block        = "10.0.8.0/24"
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-east-1a"
 
   tags = {
-    Name = "venky_subnet_1"
+    Name = "dev-app_subnet_1"
   }
 }
 
-resource "aws_internet_gateway" "venky_IGW" {
-  vpc_id = aws_vpc.venky_vpc.id
+resource "aws_internet_gateway" "dev_IGW" {
+  vpc_id = aws_vpc.dev_vpc.id
 
   tags = {
-    Name = "venky_IGW"
+    Name = "dev-app_IGW"
   }
 }
 
-resource "aws_route_table" "venky_route_table" {
-  vpc_id = aws_vpc.venky_vpc.id
+resource "aws_route_table" "dev_route_table" {
+  vpc_id = aws_vpc.dev_vpc.id
 
   tags = {
-    Name = "venky_route_table"
+    Name = "dev-app_route_table"
   }
 }
 
-resource "aws_route" "venky_internet_route" {
-  route_table_id         = aws_route_table.venky_route_table.id
+resource "aws_route" "dev_internet_route" {
+  route_table_id         = aws_route_table.dev_route_table.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.venky_IGW.id
+  gateway_id             = aws_internet_gateway.dev_IGW.id
 }
 
-resource "aws_route_table_association" "venky_subnet_association" {
-  subnet_id      = aws_subnet.venky_subnet_1.id
-  route_table_id = aws_route_table.venky_route_table.id
+resource "aws_route_table_association" "dev_subnet_association" {
+  subnet_id      = aws_subnet.dev_subnet_1.id
+  route_table_id = aws_route_table.dev_route_table.id
 }
 
-resource "aws_security_group" "venky_sg" {
-  name_prefix = "venky-sg"
-  vpc_id      = aws_vpc.venky_vpc.id
+resource "aws_security_group" "dev_sg" {
+  name_prefix = "dev-app-sg"
+  vpc_id      = aws_vpc.dev_vpc.id
 
   ingress {
     from_port   = 22
@@ -85,25 +85,18 @@ resource "aws_security_group" "venky_sg" {
   }
 
   tags = {
-    Name = "venky_sg"
+    Name = "dev-app-tag_sg"
   }
 }
 
-resource "aws_instance" "venky_ec2" {
-  ami                         = "ami-0f5ee92e2d63afc18" # Make sure this AMI exists in your region
+resource "aws_instance" "dev_ec2" {
+  ami                         = "ami-0ecb62995f68bb549" 
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.venky_subnet_1.id
-  vpc_security_group_ids      = [aws_security_group.venky_sg.id]
+  subnet_id                   = aws_subnet.dev_subnet_1.id
+  vpc_security_group_ids      = [aws_security_group.dev_sg.id]
   associate_public_ip_address = true
 
-  root_block_device {
-    volume_type           = "gp3"
-    volume_size           = 10
-    delete_on_termination = true
-  }
-
   tags = {
-    Name = "Demonstration-Instance"
+    Name = "dev-Instance"
   }
 }
-
